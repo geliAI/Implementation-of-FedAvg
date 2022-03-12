@@ -7,9 +7,8 @@ class MLP(nn.Module):
         super(MLP,self).__init__()
         self.fc1 = nn.Linear(dim_in, dim_hidden)
         self.relu = nn.ReLU()
-        self.dropout = nn.Dropout(p=p_dropout,inplace=True)
+        self.dropout = nn.Dropout(p=p_dropout)
         self.fc2 = nn.Linear(dim_hidden, num_class)
-        # self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = torch.flatten(x,1)
@@ -31,9 +30,10 @@ class CNN(nn.Module):
         self.conv2 = nn.Conv2d(in_channels = 32,out_channels = 64, kernel_size = (5,5))
         
         self.fc1 = nn.Linear(1024, dim_hidden)
-        self.fc2 = nn.Linear(dim_hidden,num_class)
         self.relu = nn.ReLU()
-        self.dropout = nn.Dropout(p=p_dropout,inplace=True)
+        self.fc2 = nn.Linear(dim_hidden,num_class)
+
+        self.dropout = nn.Dropout(p=p_dropout)
 
     def forward(self, x):
         x = self.conv1(x)
