@@ -65,7 +65,7 @@ def main():
             client = LocalClient(client_id,train_dataset, client_2_img_dict[client_id],local_bs=local_batch_size,lr=lr,
                                         local_epoch_num=local_epoch_num, device=device)
 
-            w, loss = client.ClientUpdate(model=copy.deepcopy(server.server_model), global_round=epoch)
+            w, loss = client.ClientUpdate(model=copy.deepcopy(server.server_model), global_round=epoch,verbose=0)
 
             local_weights.append(w)
             local_losses.append(loss)

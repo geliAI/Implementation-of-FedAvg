@@ -35,7 +35,7 @@ class LocalClient(object):
                                 batch_size=int(len(idxs_test)/10), shuffle=False)
         return trainloader, validloader, testloader
 
-    def ClientUpdate(self, model, global_round):
+    def ClientUpdate(self, model, global_round,verbose=0):
         # Set mode to train model
         model.train()
         epoch_loss = []
@@ -76,8 +76,9 @@ class LocalClient(object):
                 
             current_epoch_loss = sum(batch_loss)/len(batch_loss)
             current_epoch_acc = correct/total
-            print('| Global Round : {} | Local Epoch : {} on Client : {:2d} |\tAccuracy: {:.3f}|\tLoss: {:.6f}'.format(global_round+1, local_epoch+1, self.client_id, 
-                    current_epoch_acc,current_epoch_loss))
+            if verbose == 1:
+                print('| Global Round : {} | Local Epoch : {} on Client : {:2d} |\tAccuracy: {:.3f}|\tLoss: {:.6f}'.format(global_round+1, local_epoch+1, self.client_id, 
+                        current_epoch_acc,current_epoch_loss))
 
             epoch_loss.append(current_epoch_loss)
 
