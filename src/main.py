@@ -71,19 +71,17 @@ def main():
             local_losses.append(loss)
         
         avg_train_losses = np.mean(np.array(local_losses))
-        # Update server model by taking the average of local weights
+        # Update server model by taking the average of client weights
         server.update_weights(local_weights)
 
         test_acc, test_loss = server.inference(test_dataset,device)
         exp_res_file.write("%i,%.4f,%.3f\n" %(epoch, avg_train_losses,test_acc))
 
         print(f' \n Results after {epoch+1} rounds of global training:')
-        # print("|---- Avg Train Accuracy: {:.2f}%".format(100*train_accuracy[-1]))
         print("|---- Avg Train Loss: {:.6f}".format(avg_train_losses))
         print("|---- Test Accuracy: {:.2f}%".format(100*test_acc))
     
     test_acc, test_loss = server.inference(test_dataset,device)
-    # exp_res_file.write("%i \t %f \n" %(epoch, test_acc))
 
     print(f' \n Results after {global_epoch_num} rounds of global training:')
     # print("|---- Avg Train Accuracy: {:.2f}%".format(100*train_accuracy[-1]))
