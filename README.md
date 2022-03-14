@@ -4,6 +4,8 @@
 - Python3
 - PyTorch
 - Torchvision
+- matplotlib
+- pandas
 To install all requirements, run:
 
 `pip3 install -r requirements.txt`
