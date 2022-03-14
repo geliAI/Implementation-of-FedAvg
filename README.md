@@ -36,9 +36,18 @@ For all models, I use the same optimizer: `optimizer=sgd`, `lr=0.01` and `moment
 
 
 ### Results
+#### 
+<!-- ![Getting Started](./save/cnn-mlp.png) -->
+<img src="save/cnn-iid.png" alt="iid with cnn" width="400"/>
+
+#### `iid` vs `non-iid`
+<!-- ![Getting Started](./save/cnn-mlp.png) -->
+<img src="save/cnn-non-iid.png" alt="nonidd with cnn" width="400"/>
 
 #### `mlp` vs `cnn`
-![Getting Started](./cnn-mlp.png)
+<!-- ![Getting Started](./save/cnn-mlp.png) -->
+<img src="save/cnn-mlp.png" alt="cnn mlp comparison" width="400"/>
+
 ## Discussion
 
 - In the paper, it remains unclear how to calcualte the mean the client weights to get server weight. I use the average of weights of clients selected during a certain global round. 
