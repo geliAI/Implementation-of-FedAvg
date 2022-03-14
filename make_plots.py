@@ -30,7 +30,7 @@ for B in [10,50,600]:
 
 
 ax.axhline(y=0.99,linestyle='dashed',color='red',linewidth=2)
-ax.set_ylim([0.9,1])
+ax.set_ylim([0.8,1])
 ax.set_xlabel('Rounds')
 ax.set_ylabel('Test Accuracy')
 set_axis_properties(ax)
@@ -41,7 +41,9 @@ for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
               ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(15)
 plt.tight_layout()
-fig.savefig('save/cnn-iid.pdf',dpi=300)
+fig.savefig('save/cnn-iid.pdf')
+fig.savefig('save/cnn-iid.png',dpi=300)
+
 
 ###- CNN with non-IID####
 
@@ -62,7 +64,7 @@ for B in [10,50]:
             continue
 
 ax.axhline(y=0.99,linestyle='dashed',color='red',linewidth=2)
-ax.set_ylim([0.9,1])
+ax.set_ylim([0.8,1])
 # ax.set_xlim([0,1])
 ax.set_xlabel('Rounds')
 ax.set_ylabel('Test Accuracy')
@@ -74,7 +76,9 @@ for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
               ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(15)
 plt.tight_layout()
-fig.savefig('save/cnn-non-iid.pdf',dpi=300)
+fig.savefig('save/cnn-non-iid.pdf')
+fig.savefig('save/cnn-non-iid.png',dpi=300)
+
 
 
 fig,ax=plt.subplots(figsize=(4,4),ncols=1,nrows=1)
@@ -93,7 +97,7 @@ ax.plot(range(200),df_mlp['test_acc'],label='mlp B=10 E=5')
 
     # ax.plot(t[:800],rir_file[:800],color='red')
 ax.axhline(y=0.99,linestyle='dashed',color='red',linewidth=2)
-ax.set_ylim([0.9,1])
+ax.set_ylim([0.8,1])
 # ax.set_xlim([0,1])
 ax.set_xlabel('Rounds')
 ax.set_ylabel('Test Accuracy')
@@ -105,4 +109,5 @@ for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
               ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(15)
 plt.tight_layout()
-fig.savefig('save/cnn-mlp.pdf',dpi=300)
+fig.savefig('save/cnn-mlp.pdf')
+fig.savefig('save/cnn-mlp.png',dpi=300)
