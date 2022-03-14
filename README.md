@@ -58,3 +58,8 @@ For all models, I use the same optimizer: `optimizer=sgd`, `lr=0.01` and `moment
 - In the paper, it remains unclear how to calcualte the mean the client weights to get server weight. I use the average of weights of clients selected during a certain global round. Test accuracy curve flucturates a lot for the non-iid case, which might be due to the average strategy selected in my project is not that appropriate. A further study is required to illustrate this.
 - An optimized learning rate is used in the paper. Since this optimized value is not mentioned, a fixed learning rate of 0.01 is used throughout the experiments. This should be considered in making interpretations. Regardless of this discrepancy, the general trend reproduced in this project is similar to the paper. 
 - Although not strictly parallelized, the Clients are in the code are trainied sequentially but individually. This guarantees that the clients are dependent on each other.
+
+## References:
+- H. Brendan McMahan, Eider Moore, Daniel Ramage, Seth Hampson, Blaise Aguera y Arcas, Communication-Efficient Learning of Deep Networks from Decentralized Data, AISTATS 2017.
+- https://github.com/AshwinRJ/Federated-Learning-PyTorch
+- https://github.com/wuyenlin/federated-learning
