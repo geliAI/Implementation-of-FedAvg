@@ -26,8 +26,8 @@ def main():
     lr = args.lr
     data_dir = args.data_dir
  
-    exp_res_file = open('exp_{}_B{}_E{}_C{}_iid{}.txt'.format( arch_selected, local_batch_size,local_epoch_num,client_fraction,iid),'a')
-
+    exp_res_file = open('exp_{}_B{}_E{}_C{}_iid{}.csv'.format( arch_selected, local_batch_size,local_epoch_num,client_fraction,iid),'a')
+    exp_res_file.write("round,avg_train_loss,test_acc")
     # Model Construction with default parameters used in the paper.
     # A dropout layer is used between fc layers for regularization purposes.
     if arch_selected == 'mlp':
@@ -83,7 +83,8 @@ def main():
         print("|---- Test Accuracy: {:.2f}%".format(100*test_acc))
     
     test_acc, test_loss = server.inference(test_dataset,device)
-    exp_res_file.write("%i \t %f \n" %(epoch, test_acc))
+    exp_res_file.write("%i,%.4f,%.3f" %(epoch, avg_train_losses,test_acc))
+    # exp_res_file.write("%i \t %f \n" %(epoch, test_acc))
 
     print(f' \n Results after {global_epoch_num} rounds of global training:')
     # print("|---- Avg Train Accuracy: {:.2f}%".format(100*train_accuracy[-1]))
