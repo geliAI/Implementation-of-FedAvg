@@ -50,8 +50,7 @@ def main():
         local_weights = []
         local_losses = []
 
-
-        # Random select clients to be used:
+        # Randomly select clients to be used:
         # calculate the number of client to be sampled each time : m. 
         m = max(int(client_fraction * num_clients), 1) 
         selected_clients_idx = np.random.choice(range(num_clients), m, replace=False)
@@ -68,12 +67,14 @@ def main():
             local_weights.append(w)
             local_losses.append(loss)
         
+        avg_train_losses = np.mean(np.array(local_losses))
         # Update server model by taking the average of local weights
         server.update_weights(local_weights)
 
         test_acc, test_loss = server.inference(test_dataset,device)
         print(f' \n Results after {epoch+1} rounds of global training:')
         # print("|---- Avg Train Accuracy: {:.2f}%".format(100*train_accuracy[-1]))
+        print("|---- Avg Train Loss: {:.6f}".format(avg_train_losses))
         print("|---- Test Accuracy: {:.2f}%".format(100*test_acc))
     
     test_acc, test_loss = server.inference(test_dataset,device)
