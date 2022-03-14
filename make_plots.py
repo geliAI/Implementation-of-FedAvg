@@ -75,3 +75,34 @@ for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
     item.set_fontsize(15)
 plt.tight_layout()
 fig.savefig('save/cnn-non-iid.png',dpi=300)
+
+
+fig,ax=plt.subplots(figsize=(4,4),ncols=1,nrows=1)
+B=10
+E=5
+
+
+exp_res_inpF='./save/exp_{}_B{}_E{}_C0.1_iid1.csv'.format('cnn',B,E)
+df_cnn=pd.read_csv(exp_res_inpF)
+exp_res_inpF='./save/exp_{}_B{}_E{}_C0.1_iid1.csv'.format('mlp',B,E)
+df_mlp=pd.read_csv(exp_res_inpF)
+
+ax.plot(range(200),df_cnn['test_acc'],label='cnn B=10 E=5')
+ax.plot(range(200),df_mlp['test_acc'],label='mlp B=10 E=5')
+
+
+    # ax.plot(t[:800],rir_file[:800],color='red')
+ax.axhline(y=0.99,linestyle='dashed',color='red',linewidth=2)
+ax.set_ylim([0.9,1])
+# ax.set_xlim([0,1])
+ax.set_xlabel('Rounds')
+ax.set_ylabel('Test Accuracy')
+set_axis_properties(ax)
+ax.legend(loc='lower right', frameon=False)
+
+
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+              ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(15)
+plt.tight_layout()
+fig.savefig('save/cnn-mlp.png',dpi=300)
