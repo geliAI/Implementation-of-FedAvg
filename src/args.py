@@ -31,14 +31,10 @@ class ArgsInit(object):
         parser.add_argument('--iid', type=int, default=1,
                             help='Default set to IID. Set to 0 for non-IID.')
 
-        # training arguments
-        parser.add_argument('--gpu', default=None, help="To use cuda, set \
-                            to a specific GPU ID. Default set to use CPU.")
+        # training argument
         parser.add_argument('--optimizer', type=str, default='sgd', help="type \
                             of optimizer")
-        parser.add_argument('--stopping_rounds', type=int, default=10,
-                            help='rounds of early stopping')
-        parser.add_argument('--verbose', type=int, default=1, help='verbose')
+        parser.add_argument('--verbose', type=int, default=0, help='verbose')
         parser.add_argument('--seed', type=int, default=1, help='random seed')
 
 
