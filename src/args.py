@@ -20,9 +20,7 @@ class ArgsInit(object):
                             help="the number of epochs of local training: E")
         parser.add_argument('--lr', type=float, default=0.01,
                             help='learning rate')
-        parser.add_argument('--momentum', type=float, default=0.5,
-                            help='SGD momentum (default: 0.5)')
-
+      
         # data arguments
         parser.add_argument('--dataset', type=str, default='mnist', help="dataset to be used")
         parser.add_argument('--data_dir', type=str, default='./data/mnist', help="dataset to be used")
@@ -32,10 +30,7 @@ class ArgsInit(object):
                             help='Default set to IID. Set to 0 for non-IID.')
 
         # training argument
-        parser.add_argument('--optimizer', type=str, default='sgd', help="type \
-                            of optimizer")
         parser.add_argument('--verbose', type=int, default=0, help='verbose')
-        parser.add_argument('--seed', type=int, default=1, help='random seed')
 
 
         self.args = parser.parse_args()
