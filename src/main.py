@@ -18,12 +18,15 @@ def main():
 
     num_clients = args.K
     client_fraction = args.C
+    iid = args.iid
 
 
     local_epoch_num = args.E
     local_batch_size = args.B
     lr = args.lr
     data_dir = args.data_dir
+ 
+    exp_res_file = open('exp_{}_B{}_E{}_C{}_iid{}.txt'.format( arch_selected, local_batch_size,local_epoch_num,client_fraction,iid),'a')
 
     # Model Construction with default parameters used in the paper.
     # A dropout layer is used between fc layers for regularization purposes.
@@ -43,7 +46,7 @@ def main():
         exit('Model not implemented.')
     
     # Data patrition preparation
-    train_dataset, test_dataset, client_2_img_dict = prepare_dataset(data_dir,dataset_name='mnist',iid=1,num_clients=num_clients)
+    train_dataset, test_dataset, client_2_img_dict = prepare_dataset(data_dir,dataset_name='mnist',iid=iid,num_clients=num_clients)
 
     # Start global round
     for epoch in range(global_epoch_num):
@@ -72,12 +75,15 @@ def main():
         server.update_weights(local_weights)
 
         test_acc, test_loss = server.inference(test_dataset,device)
+        exp_res_file.write("%i \t %f \n" %(epoch+1, test_acc))
+
         print(f' \n Results after {epoch+1} rounds of global training:')
         # print("|---- Avg Train Accuracy: {:.2f}%".format(100*train_accuracy[-1]))
         print("|---- Avg Train Loss: {:.6f}".format(avg_train_losses))
         print("|---- Test Accuracy: {:.2f}%".format(100*test_acc))
     
     test_acc, test_loss = server.inference(test_dataset,device)
+    exp_res_file.write("%i \t %f \n" %(epoch, test_acc))
 
     print(f' \n Results after {global_epoch_num} rounds of global training:')
     # print("|---- Avg Train Accuracy: {:.2f}%".format(100*train_accuracy[-1]))
