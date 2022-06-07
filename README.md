@@ -63,3 +63,5 @@ For all models, I use the same optimizer: `optimizer=sgd`, `lr=0.01` and `moment
 - H. Brendan McMahan, Eider Moore, Daniel Ramage, Seth Hampson, Blaise Aguera y Arcas, Communication-Efficient Learning of Deep Networks from Decentralized Data, AISTATS 2017.
 - https://github.com/AshwinRJ/Federated-Learning-PyTorch
 - https://github.com/wuyenlin/federated-learning
+
+A test line
